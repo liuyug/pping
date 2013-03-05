@@ -27,10 +27,10 @@ int http_ping(const char * url)
     curl_easy_setopt(handle, CURLOPT_FOLLOWLOCATION, 1);
 #if 0
     curl_easy_setopt(handle, CURLOPT_VERBOSE, 1);
+    curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, http_handle_default);
+#endif
     curl_easy_setopt(handle, CURLOPT_NOBODY, 1);
     curl_easy_setopt(handle, CURLOPT_HEADERFUNCTION, http_handle_default);
-#endif
-    curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, http_handle_default);
     curl_easy_setopt(handle, CURLOPT_URL, url);
     char s_url[80];
     compact_url(url, s_url);
