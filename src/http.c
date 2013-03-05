@@ -29,6 +29,7 @@ int http_ping(const char * url)
     curl_easy_setopt(handle, CURLOPT_VERBOSE, 1);
     curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, http_handle_default);
 #endif
+    curl_easy_setopt(handle, CURLOPT_TIMEOUT, timeout);
     curl_easy_setopt(handle, CURLOPT_NOBODY, 1);
     curl_easy_setopt(handle, CURLOPT_HEADERFUNCTION, http_handle_default);
     curl_easy_setopt(handle, CURLOPT_URL, url);
@@ -47,9 +48,8 @@ int http_ping(const char * url)
         seq++;
         ret = curl_easy_perform(handle);
         if(ret!=CURLE_OK){
-            errno=ret;
             if(!ping_quiet){
-                perror("curl");
+                fprintf(stderr,"curl: %s\n", curl_easy_strerror(ret));
             } 
             if(ping_count>0&&seq>=ping_count)
                 return ret;

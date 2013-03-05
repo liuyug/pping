@@ -11,6 +11,7 @@
 
 #define VERSION "v1.1.6"
 
+int timeout=5;
 double rtt_min;
 double rtt_max;
 double rtt_sum;

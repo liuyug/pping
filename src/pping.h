@@ -8,6 +8,7 @@
 #define RIGHT   0x0002
 #define BOTH    LEFT | RIGHT
 
+extern int timeout;
 extern double rtt_min;
 extern double rtt_max;
 extern double rtt_sum;
