@@ -11,7 +11,7 @@
 
 #define VERSION "v1.1.6"
 
-int timeout=5;
+int timeout=10;
 double rtt_min;
 double rtt_max;
 double rtt_sum;
@@ -207,6 +207,7 @@ void usage()
 "Common options:\n"
 "   -h               print this message\n"
 "   -c <count>       how many times to ping\n"
+"   -t <timeout>     timeout time\n"
 "   -i <interval>    delay between each ping, default 1 sec\n"
 "      --icmp        force pinging with ICMP\n"
 "      --http        force pinging with HTTP\n"
@@ -249,7 +250,7 @@ int main(int argc,char *argv[])
         usage();
         return 1;
     }
-    while ((opt = getopt_long(argc, argv, "hqp:c:i:s:",long_options,&option_index)) != -1)
+    while ((opt = getopt_long(argc, argv, "hqp:c:i:s:t:",long_options,&option_index)) != -1)
     {
         switch (opt)
         {
@@ -270,6 +271,9 @@ int main(int argc,char *argv[])
             break;
         case 's':
             ping_packetsize=atoi(optarg);
+            break;
+        case 't':
+            timeout=atoi(optarg);
             break;
         case '?':
             printf("\nTry 'pping --help' for more options.\n");
