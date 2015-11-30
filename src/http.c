@@ -50,7 +50,7 @@ int http_ping(const char * url)
         if(ret!=CURLE_OK){
             if(!ping_quiet){
                 fprintf(stderr,"curl: %s\n", curl_easy_strerror(ret));
-            } 
+            }
             if(ping_count>0&&seq>=ping_count)
                 return ret;
             ppingsleep(ping_interval);

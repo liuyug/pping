@@ -7,21 +7,6 @@
 #include "pping.h"
 
 #ifdef __WIN32__
-#define ICMP_ECHOREPLY          0       /* Echo Reply                   */
-#define ICMP_DEST_UNREACH       3       /* Destination Unreachable      */
-#define ICMP_SOURCE_QUENCH      4       /* Source Quench                */
-#define ICMP_REDIRECT           5       /* Redirect (change route)      */
-#define ICMP_ECHO               8       /* Echo Request                 */
-#define ICMP_TIME_EXCEEDED      11      /* Time Exceeded                */
-#define ICMP_PARAMETERPROB      12      /* Parameter Problem            */
-#define ICMP_TIMESTAMP          13      /* Timestamp Request            */
-#define ICMP_TIMESTAMPREPLY     14      /* Timestamp Reply              */
-#define ICMP_INFO_REQUEST       15      /* Information Request          */
-#define ICMP_INFO_REPLY         16      /* Information Reply            */
-#define ICMP_ADDRESS            17      /* Address Mask Request         */
-#define ICMP_ADDRESSREPLY       18      /* Address Mask Reply           */
-#define NR_ICMP_TYPES           18
-
 
 typedef unsigned char u_int8_t;
 typedef unsigned short int u_int16_t;
@@ -49,11 +34,28 @@ struct ip {
     u_short ip_sum;                     /* checksum */
     struct in_addr ip_src, ip_dst;      /* source and dest address */
 };
+#endif
+
+#if defined(__WIN32__) || defined(__CYGWIN__)
+#define ICMP_ECHOREPLY          0       /* Echo Reply                   */
+#define ICMP_DEST_UNREACH       3       /* Destination Unreachable      */
+#define ICMP_SOURCE_QUENCH      4       /* Source Quench                */
+#define ICMP_REDIRECT           5       /* Redirect (change route)      */
+#define ICMP_ECHO               8       /* Echo Request                 */
+#define ICMP_TIME_EXCEEDED      11      /* Time Exceeded                */
+#define ICMP_PARAMETERPROB      12      /* Parameter Problem            */
+#define ICMP_TIMESTAMP          13      /* Timestamp Request            */
+#define ICMP_TIMESTAMPREPLY     14      /* Timestamp Reply              */
+#define ICMP_INFO_REQUEST       15      /* Information Request          */
+#define ICMP_INFO_REPLY         16      /* Information Reply            */
+#define ICMP_ADDRESS            17      /* Address Mask Request         */
+#define ICMP_ADDRESSREPLY       18      /* Address Mask Reply           */
+#define NR_ICMP_TYPES           18
+
 struct icmp_ra_addr {
     u_int32_t ira_addr;
     u_int32_t ira_preference;
 };
-
 struct icmp {
     u_int8_t  icmp_type;  /* type of message, see below */
     u_int8_t  icmp_code;  /* type sub code */

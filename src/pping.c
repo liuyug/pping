@@ -9,7 +9,7 @@
 
 #include "pping.h"
 
-#define VERSION "v1.1.6"
+#define VERSION "v1.1.7"
 
 int timeout=10;
 double rtt_min;
@@ -44,7 +44,7 @@ char * ms2s(unsigned int byte, char * buf)
         double bb = byte;
         bb = bb / 1000;
         sprintf(buf,"%4.1fs", bb);
-    } 
+    }
     return buf;
 }
 
@@ -94,7 +94,7 @@ const char * compact_url(const char * url, char buf[80])
     buf[32]=' ';
     buf[33]='\0';
     return buf;
-} 
+}
 
 int output_url(const char * url)
 {
